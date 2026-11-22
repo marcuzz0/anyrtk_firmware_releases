@@ -2,13 +2,16 @@
 
 Binari firmware per **AnyRTK**, il firmware unificato dei ricevitori GNSS RTK su ESP32.
 
-Un solo binario per entrambi i prodotti: il modulo GNSS viene **rilevato al boot** e il firmware
-carica il driver corrispondente.
+Un solo firmware per tutti i prodotti: scheda e modulo GNSS vengono **rilevati al boot** e il
+firmware carica il driver corrispondente.
 
 | Prodotto | Modulo GNSS | Note |
 | --- | --- | --- |
-| **TRIG** | Unicore UM98x (UM980 / UM981 / UM981S / UM982) | con unità inerziale e compensazione dell'inclinazione della palina |
 | **MS2** | u-blox | senza unità inerziale |
+| **pico** | Quectel LG290P | compensazione dell'inclinazione con l'IMU IM19, se montata |
+| **flip** | a innesto: u-blox, Quectel LG290P o Unicore UM980 | IMU IM19 sempre montata |
+
+pico e flip si aggiornano da qui a partire dalle versioni che le comprendono.
 
 ## Aggiornamento via rete
 
@@ -37,6 +40,6 @@ dispositivo cerca.
 
 Numerazione `vX.Y.Z`. *Latest* è la release con `published_at` più recente.
 
-Si tengono **poche release contemporaneamente**, di norma una versione di riferimento più
-l'ultima pubblicata: i firmware installati prima della versione 3.0.5 leggono l'elenco delle
-release in un buffer da 16 KB, e un elenco più lungo impedirebbe loro di aggiornarsi.
+Le release non si ritirano: il dispositivo legge soltanto le **ultime otto**. I firmware
+installati prima della versione 3.0.5 leggono l'elenco in un buffer da 16 KB e si aggiornano con
+«installa l'ultima» (`[u]` poi `[l]`), che non passa dall'elenco.
